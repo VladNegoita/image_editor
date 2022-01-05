@@ -7,6 +7,8 @@
 
 void load_image(char *instruction, image *current_image)
 {
+	if (current_image->loaded == 1)
+		free_matrix(current_image->mat.a, current_image->mat.height);
 	char *p = strstr(instruction, "LOAD") + strlen("LOAD");
 	char *file_name = NULL;
 	file_name = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
