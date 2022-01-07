@@ -39,6 +39,8 @@ int main(void)
 		else
 			printf("%s\n", COMMAND_ERROR);
 	}
+
 	free(instruction);
+	
 	return 0;
 }

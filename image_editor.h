@@ -15,6 +15,7 @@
 #define SEP " \n"
 #define TEST printf("%s\n", "test");
 
+//the 3 values that identify a pixel (red, green and blue)
 typedef struct
 {
 	double r, g, b;
@@ -43,6 +44,7 @@ typedef struct
 
 //mat -> a matrix of pixels
 //loaded = 1 if the image is loaded, 0 otherwise
+//type is the number that was after P in the loaded file
 typedef struct
 {
 	matrix mat;

@@ -5,6 +5,9 @@
 #include <string.h>
 #include "image_editor.h"
 
+//saves the image as file_name
+//when "ascii" follows the file_name, the image is written as text file
+//otherwise, it is written as binary file
 void save_image(char *instruction, image *current_image)
 {
 	if (!current_image->loaded) {
@@ -27,9 +30,9 @@ void save_image(char *instruction, image *current_image)
 		return;
 	}
 
-	int max_value = MAX_VALUE;///////////////////////////////////////////////
+	int max_value = MAX_VALUE;////////////////////////////////////////////////
 
-	if (strstr(instruction, "ascii")) {
+	if (strstr(p, "ascii")) {
 		if (current_image->type == 2 || current_image->type == 5)
 			fprintf(out, "P%d\n", 2);
 		else

@@ -5,6 +5,7 @@
 #include <string.h>
 #include "image_editor.h"
 
+//selects an area of the image
 void select_area(char *instruction, image *current_image)
 {
 	if (!current_image->loaded) {

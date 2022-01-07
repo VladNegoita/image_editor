@@ -5,6 +5,8 @@
 #include <string.h>
 #include "image_editor.h"
 
+//this function applies an filter
+//the options are: EDGE, SHARPEN, BLUR and GAUSSIAN_BLUR
 void apply_filter(char *instruction, image *current_image)
 {
 	if (current_image->loaded == 0) {
@@ -15,14 +17,20 @@ void apply_filter(char *instruction, image *current_image)
 		image new_image;
 		init(&new_image, current_image);
 
+		//dh[] and dw[] are direction arrays
+		//the first pair points to the element itself
+		//the next 4 pairs point to the side neighbours (one side common)
+		//the last 4 pairs point to the diagonal neighbours
 		int dh[9] = {0, 0, 0, 1, -1, 1, -1, 1, -1};
 		int dw[9] = {0, 1, -1, 0, 0, 1, -1, -1, 1};
 
+		//these are the kernel matrices associated with the direction arrays
 		double edge[9] = {8, -1, -1, -1, -1, -1, -1, -1 , -1};
 		double sharpen[9] = {5, -1, -1, -1, -1, 0, 0, 0, 0};
 		double blur[9] = {1, 1, 1, 1, 1, 1, 1, 1, 1};
 		double gaussian_blur[9] = {4, 2, 2, 2, 2, 1, 1, 1, 1};
 
+		//for a simpler approach, we introduce the constant in the matrices
 		for (int i = 0; i < 9; ++i) {
 			blur[i] /= 9;
 			gaussian_blur[i] /= 16;
@@ -53,7 +61,7 @@ void apply_filter(char *instruction, image *current_image)
 				if (h <= y1 || h >= y2 - 1 || w <= x1 || w >= x2 - 1) {
 					new_image.mat.a[h][w] = current_image->mat.a[h][w];
 				} else {
-					pixel sum = {0, 0, 0};
+					pixel sum = {0, 0, 0};///the resulting pixel
 					for (int i = 0; i < 9; ++i) {
 						pixel aux = current_image->mat.a[h + dh[i]][w + dw[i]];
 						if (effect == 2) {
@@ -71,17 +79,17 @@ void apply_filter(char *instruction, image *current_image)
 				}
 			}
 		}
+
 		free_matrix(current_image->mat.a, current_image->mat.height);
-		printf("%s ", "APPLY");
+
 		if (effect == 1)
-			printf("EDGE ");
+			printf("APPLY EDGE done");
 		else if (effect == 2)
-			printf("SHARPEN ");
+			printf("APPLY SHARPEN done");
 		else if (effect == 3)
-			printf("BLUR ");
+			printf("APPLY BLUR done");
 		else
-			printf("GAUSSIAN_BLUR ");
-		printf("done\n");
+			printf("APPLY GAUSSIAN_BLUR done");
 		*current_image = new_image;
 	}
 }

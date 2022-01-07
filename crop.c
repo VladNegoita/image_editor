@@ -5,6 +5,7 @@
 #include <string.h>
 #include "image_editor.h"
 
+//this function crops an image to the selected region
 void crop_image(image *current_image)
 {
 	if (!current_image->loaded) {

@@ -8,6 +8,7 @@
 void read_text(FILE *in, image *current_image);
 void read_binary(FILE *in, image *current_image);
 
+//loads an image into current_image variable
 void load_image(char *instruction, image *current_image)
 {
 	char *p = strstr(instruction, "LOAD") + strlen("LOAD");

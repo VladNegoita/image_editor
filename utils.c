@@ -5,6 +5,7 @@
 #include <string.h>
 #include "image_editor.h"
 
+//allocates memory for a matrix of pixels of dimensions lines and columns
 pixel** alloc_matrix(int lines, int columns)
 {
 	pixel **a = NULL;
@@ -29,6 +30,7 @@ pixel** alloc_matrix(int lines, int columns)
 	return a;
 }
 
+//frees the memory for a matrix of pixels
 void free_matrix(pixel **a, int lines)
 {
 	for (int i = 0; i < lines; ++i)
@@ -36,6 +38,7 @@ void free_matrix(pixel **a, int lines)
 	free(a);
 }
 
+//marks the whole image as selected
 void select_all_pixels(image *current_image)
 {
 	current_image->coordinates.x1 = 0;
@@ -44,11 +47,13 @@ void select_all_pixels(image *current_image)
 	current_image->coordinates.y2 = current_image->mat.height;
 }
 
+//returns 1 if the character is a digit and 0 otherwise
 int is_digit(char character)
 {
 	return (character <= '9' && character >= '0');
 }
 
+//swaps the values of two int variables
 void swap_integers(int *m, int *n)
 {
 	int aux;
@@ -58,6 +63,7 @@ void swap_integers(int *m, int *n)
 	*n = aux;
 }
 
+//parse the input and extracts a number
 char* get_number(char *instruction, int *number)
 {
 	int i = 0, sign = 1;
@@ -79,6 +85,7 @@ char* get_number(char *instruction, int *number)
 	return instruction + i;
 }
 
+//parse the input and extracts a name (file_name for example)
 char* get_name(char *instruction, char *name)
 {
 	int i = 0, j = 0;
@@ -90,6 +97,7 @@ char* get_name(char *instruction, char *name)
 	return instruction + i;
 }
 
+//initialise the values of a new image based on the current image 
 void init(image *new_image, image *current_image)
 {
 	new_image->type = current_image->type;
@@ -101,6 +109,7 @@ void init(image *new_image, image *current_image)
 	new_image->coordinates = current_image->coordinates;
 }
 
+//returns the sum (in a vectorial way) of the two pixels
 pixel add(pixel p1, pixel p2)
 {
 	pixel sum;
@@ -112,6 +121,7 @@ pixel add(pixel p1, pixel p2)
 	return sum;
 }
 
+//multiplies the values of a pixel by a number
 pixel multiply(pixel p1, double number)
 {
 	pixel product;
@@ -123,6 +133,7 @@ pixel multiply(pixel p1, double number)
 	return product;
 }
 
+//restrict a pixel to a given interval
 pixel clamp_pixel(pixel p)
 {
 	p.r = clamp(p.r);
@@ -132,6 +143,7 @@ pixel clamp_pixel(pixel p)
 	return p;
 }
 
+//restrict a number to a given interval
 double clamp(double number)
 {
 	if (number < 0)

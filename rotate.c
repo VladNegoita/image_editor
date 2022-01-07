@@ -9,6 +9,9 @@ int entire_zone(image *current_image);
 void rotate_zone(image *current_image);
 void rotate_entire_image(image *current_image);
 
+//this function deals with the angle and the number of rotations needed
+//then calls other function to perform the effective rotation
+
 void rotate_image(char *instruction, image *current_image)
 {
 	int angle;
@@ -44,6 +47,7 @@ void rotate_image(char *instruction, image *current_image)
 	}
 }
 
+//returns 1 if the entire image is selected and 0 otherwise
 int entire_zone(image *current_image)
 {
 	if (current_image->coordinates.x1 != 0)
@@ -57,6 +61,7 @@ int entire_zone(image *current_image)
 	return 1;
 }
 
+//effectively rotates to the right the selected area
 void rotate_zone(image *current_image)
 {
 	image new_image;
@@ -85,6 +90,7 @@ void rotate_zone(image *current_image)
 	*current_image = new_image;
 }
 
+//rotates the entire image and performs other necessary changes
 void rotate_entire_image(image *current_image)
 {
 	image new_image;
