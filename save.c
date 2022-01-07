@@ -34,8 +34,8 @@ void save_image(char *instruction, image *current_image)
 			fprintf(out, "P%d\n", 2);
 		else
 			fprintf(out, "P%d\n", 3);
-		fprintf(out, "%d ", current_image->mat.height);
-		fprintf(out, "%d\n", current_image->mat.width);
+		fprintf(out, "%d ", current_image->mat.width);
+		fprintf(out, "%d\n", current_image->mat.height);
 		fprintf(out, "%d\n", max_value);
 		for (int h = 0; h < current_image->mat.height; ++h) {
 			for (int w = 0; w < current_image->mat.width; ++w) {
@@ -54,8 +54,8 @@ void save_image(char *instruction, image *current_image)
 			fprintf(out, "P%d\n", 5);
 		else
 			fprintf(out, "P%d\n", 6);
-		fprintf(out, "%d ", current_image->mat.height);
-		fprintf(out, "%d\n", current_image->mat.width);
+		fprintf(out, "%d ", current_image->mat.width);
+		fprintf(out, "%d\n", current_image->mat.height);
 		fprintf(out, "%d\n", max_value);
 		fclose(out);
 		out = fopen(file_name, "ab");

@@ -35,13 +35,13 @@ void apply_filter(char *instruction, image *current_image)
 
 		int effect = 0;
 
-		if (effect == 2 || strstr(instruction, "SHARPEN")) {
+		if (strstr(instruction, "SHARPEN")) {
 			effect = 2;
-		} else if (effect == 3 || strstr(instruction, "BLUR")) {
-			effect = 3;
-		} else if (effect == 4 || strstr(instruction, "GAUSSIAN_BLUR")) {
+		} else if (strstr(instruction, "GAUSSIAN_BLUR")) {
 			effect = 4;
-		} else if (effect == 1 || strstr(instruction, "EDGE")) {
+		} else if (strstr(instruction, "BLUR")) {
+			effect = 3;
+		} else if (strstr(instruction, "EDGE")) {
 			effect = 1;
 		} else {
 			printf("%s\n", "APPLY parameter invalid");
@@ -80,7 +80,7 @@ void apply_filter(char *instruction, image *current_image)
 		else if (effect == 3)
 			printf("BLUR ");
 		else
-			printf("GAUSSIAN_BLUR");
+			printf("GAUSSIAN_BLUR ");
 		printf("done\n");
 		*current_image = new_image;
 	}

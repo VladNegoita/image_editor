@@ -12,6 +12,7 @@ void crop_image(image *current_image)
 	} else {
 
 		image new_image;
+
 		int x1 = current_image->coordinates.x1;
 		int y1 = current_image->coordinates.y1;
 		int x2 = current_image->coordinates.x2;
@@ -21,18 +22,15 @@ void crop_image(image *current_image)
 		new_image.type = current_image->type;
 		new_image.mat.width = x2 - x1;
 		new_image.mat.height = y2 - y1;
-
+		select_all_pixels(&new_image);
 		pixel **aux = alloc_matrix(new_image.mat.height, new_image.mat.width);
 		new_image.mat.a = aux;
 
-		for (int i = 0; i < new_image.mat.height; ++i)
-			for (int j = 0; j < new_image.mat.width; ++j)
-				new_image.mat.a[i][j] = current_image->mat.a[i + y1][j + x1];
-
-		select_all_pixels(&new_image);
+		for (int h = 0; h < new_image.mat.height; ++h)
+			for (int w = 0; w < new_image.mat.width; ++w)
+				new_image.mat.a[h][w] = current_image->mat.a[h + y1][w + x1];
 
 		free_matrix(current_image->mat.a, current_image->mat.height);
-
 		*current_image = new_image;
 		printf("%s\n", "Image cropped");
 	}

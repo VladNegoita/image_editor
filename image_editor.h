@@ -29,9 +29,11 @@ typedef struct
 } matrix;
 
 //a rectangle surface delimited by two points:
-//x1, y1 -> top-left
-//x2, y2 -> bottom-right
-//x1 <= x2 and y1 <= y2
+//x1, y1 -> top-left point coordinates
+//x2, y2 -> bottom-right point coordinates
+//x1 <= x2 and y1 <= y2 relationship holds
+//the selected zone is the rectangle delimited 
+//	by the segments [x1, x2) (horizontal) and [y1, y2) (vertical)
 typedef struct
 {
 	int x1, y1;
@@ -40,6 +42,7 @@ typedef struct
 
 
 //mat -> a matrix of pixels
+//loaded = 1 if the image is loaded, 0 otherwise
 typedef struct
 {
 	matrix mat;
@@ -54,20 +57,18 @@ int is_digit(char character);
 void swap_integers(int *m, int *n);
 char* get_number(char *instruction, int *number);
 char* get_name(char *instruction, char *name);
+double clamp(double number);
+pixel clamp_pixel(pixel p);
+pixel multiply(pixel p1, double number);
+pixel add(pixel p1, pixel p2);
+void init(image *new_image, image *current_image);
+
 int exit_program(image *current_image);
 void apply_filter(char *instruction, image *current_image);
 void crop_image(image *current_image);
-void rotate(image *current_image);
 void rotate_image(char *instruction, image *current_image);
 void select_area(char *instruction, image *current_image);
 void load_image(char *instruction, image *current_image);
 void save_image(char *instruction, image *current_image);
-pixel multiply(pixel p1, double number);
-pixel add(pixel p1, pixel p2);
-void init(image *new_image, image *current_image);
-void read_text(FILE *in, image *current_image);
-void read_binary(FILE *in, image *current_image);
-double clamp(double number);
-pixel clamp_pixel(pixel p);
 
 #endif

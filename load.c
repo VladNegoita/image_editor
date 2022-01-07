@@ -5,10 +5,11 @@
 #include <string.h>
 #include "image_editor.h"
 
+void read_text(FILE *in, image *current_image);
+void read_binary(FILE *in, image *current_image);
+
 void load_image(char *instruction, image *current_image)
 {
-	if (current_image->loaded == 1)
-		free_matrix(current_image->mat.a, current_image->mat.height);
 	char *p = strstr(instruction, "LOAD") + strlen("LOAD");
 	char *file_name = NULL;
 	file_name = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
@@ -20,9 +21,12 @@ void load_image(char *instruction, image *current_image)
 
 	FILE *in = fopen(file_name, "rt");
 	if(in == NULL) {
-		printf("%s %s\n", "Failed to load ", file_name);
+		printf("%s %s\n", "Failed to load", file_name);
 		return;
 	}
+
+	if (current_image->loaded == 1)
+		free_matrix(current_image->mat.a, current_image->mat.height);
 
 	char *s = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
 
@@ -56,8 +60,8 @@ void load_image(char *instruction, image *current_image)
 	while (strstr(s, "#"))
 		fgets(s, MAXIMUM_LENGTH, in);
 
-	p = get_number(s, &current_image->mat.height);
-	p = get_number(p, &current_image->mat.width);
+	p = get_number(s, &current_image->mat.width);
+	p = get_number(p, &current_image->mat.height);
 
 	pixel **aux;
 	aux = alloc_matrix(current_image->mat.height, current_image->mat.width);
