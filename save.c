@@ -8,6 +8,14 @@
 //saves the image as file_name
 //when "ascii" follows the file_name, the image is written as text file
 //otherwise, it is written as binary file
+
+int myround(double x)
+{
+	if ((int)x == (int)(x - 0.000001))
+		return (int)x + 1;
+	return (int)x;
+}
+
 void save_image(char *instruction, image *current_image)
 {
 	if (!current_image->loaded) {
@@ -44,11 +52,11 @@ void save_image(char *instruction, image *current_image)
 		for (int h = 0; h < current_image->mat.height; ++h) {
 			for (int w = 0; w < current_image->mat.width; ++w) {
 				if (current_image->type == 2 || current_image->type == 5) {
-					fprintf(out, "%d ", (int)current_image->mat.a[h][w].r);
+					fprintf(out, "%d ", myround(current_image->mat.a[h][w].r));
 				} else {
-					fprintf(out, "%d ", (int)current_image->mat.a[h][w].r);
-					fprintf(out, "%d ", (int)current_image->mat.a[h][w].g);
-					fprintf(out, "%d ", (int)current_image->mat.a[h][w].b);
+					fprintf(out, "%d ", myround(current_image->mat.a[h][w].r));
+					fprintf(out, "%d ", myround(current_image->mat.a[h][w].g));
+					fprintf(out, "%d ", myround(current_image->mat.a[h][w].b));
 				}
 			}
 			fprintf(out, "\n");
@@ -67,14 +75,14 @@ void save_image(char *instruction, image *current_image)
 			for (int w = 0; w < current_image->mat.width; ++w) {
 				unsigned char aux;
 				if (current_image->type == 2 || current_image->type == 5) {
-					aux = (unsigned char)current_image->mat.a[h][w].r;
+					aux = (unsigned char)myround(current_image->mat.a[h][w].r);
 					fwrite(&aux, sizeof(unsigned char), 1, out);
 				} else {
-					aux = (unsigned char)current_image->mat.a[h][w].r;
+					aux = (unsigned char)myround(current_image->mat.a[h][w].r);
 					fwrite(&aux, sizeof(unsigned char), 1, out);
-					aux = (unsigned char)current_image->mat.a[h][w].g;
+					aux = (unsigned char)myround(current_image->mat.a[h][w].g);
 					fwrite(&aux, sizeof(unsigned char), 1, out);
-					aux = (unsigned char)current_image->mat.a[h][w].b;
+					aux = (unsigned char)myround(current_image->mat.a[h][w].b);
 					fwrite(&aux, sizeof(unsigned char), 1, out);
 				}
 			}
