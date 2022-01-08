@@ -82,6 +82,10 @@ void calculus(image *current_image, int effect)
 //the options are: EDGE, SHARPEN, BLUR and GAUSSIAN_BLUR
 void apply_filter(char *instruction, image *current_image)
 {
+	if (current_image->loaded == 0) {
+		printf("%s\n", IMAGE_ERROR);
+		return;
+	}
 	int effect = 0;
 	char *p, *filter_name = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
 	p = get_name(strstr(instruction, "APPLY") + strlen("APPLY"), filter_name);
@@ -100,12 +104,11 @@ void apply_filter(char *instruction, image *current_image)
 		effect = 1;
 	} else {
 		printf("%s\n", "Invalid filter name");
+		free(filter_name);
 		return;
 	}
 	free(filter_name);
-	if (current_image->loaded == 0) {
-		printf("%s\n", IMAGE_ERROR);
-	} else if (current_image->type != 3 && current_image->type != 6) {
+	if (current_image->type != 3 && current_image->type != 6) {
 		printf("%s\n", "Easy, Charlie Chaplin");
 	} else {
 		calculus(current_image, effect);

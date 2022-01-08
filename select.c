@@ -54,6 +54,10 @@ void select_area(char *instruction, image *current_image)
 			ok = 0;
 		if (y2 < 0 || y2 > current_image->mat.height)
 			ok = 0;
+		if (x1 == x2)
+			ok = 0;
+		if (y1 == y2)
+			ok = 0;
 
 		if (ok) {
 			current_image->coordinates.x1 = x1;
