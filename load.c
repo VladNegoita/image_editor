@@ -59,6 +59,7 @@ void load_image(char *instruction, image *current_image)
 	FILE *in = fopen(file_name, "rt");
 	if (!in) {
 		printf("%s %s\n", "Failed to load", file_name);
+		free(file_name);
 		return;
 	}
 
