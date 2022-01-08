@@ -17,7 +17,7 @@ void save_image(char *instruction, image *current_image)
 	char *p = strstr(instruction, "SAVE") + strlen("SAVE");
 	char *file_name = NULL;
 	file_name = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
-	if(file_name == NULL) {
+	if (!file_name) {
 		fprintf(stderr, "%s\n", MEMORY_ERROR);
 		return;
 	}
@@ -25,13 +25,14 @@ void save_image(char *instruction, image *current_image)
 
 	FILE *out;
 	out = fopen(file_name, "wt");
-	if (out == NULL) {
+
+	if (!out) {
 		fprintf(stderr, "%s\n", MEMORY_ERROR);
+		free(file_name);
 		return;
 	}
 
-	int max_value = MAX_VALUE;////////////////////////////////////////////////
-
+	int max_value = MAX_VALUE;
 	if (strstr(p, "ascii")) {
 		if (current_image->type == 2 || current_image->type == 5)
 			fprintf(out, "P%d\n", 2);
@@ -80,6 +81,6 @@ void save_image(char *instruction, image *current_image)
 		}
 	}
 	printf("%s %s\n", "Saved", file_name);
-	fclose(out);
 	free(file_name);
+	fclose(out);
 }

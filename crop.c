@@ -11,7 +11,6 @@ void crop_image(image *current_image)
 	if (!current_image->loaded) {
 		printf("%s\n", IMAGE_ERROR);
 	} else {
-
 		image new_image;
 
 		int x1 = current_image->coordinates.x1;

@@ -9,10 +9,9 @@
 //returns 1 (the program is ended) and frees the memory otherwise
 int exit_program(image *current_image)
 {
-	if (!current_image->loaded) {
+	if (!current_image->loaded)
 		printf("%s\n", IMAGE_ERROR);
-		return 0;
-	}
-	free_matrix(current_image->mat.a, current_image->mat.height);
+	else
+		free_matrix(current_image->mat.a, current_image->mat.height);
 	return 1;
 }

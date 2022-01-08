@@ -6,22 +6,21 @@
 #include "image_editor.h"
 
 //allocates memory for a matrix of pixels of dimensions lines and columns
-pixel** alloc_matrix(int lines, int columns)
+pixel **alloc_matrix(int lines, int columns)
 {
 	pixel **a = NULL;
 
-	a = (pixel **) malloc(lines * sizeof(pixel *));
-	if(a == NULL) {
+	a = (pixel **)malloc(lines * sizeof(pixel *));
+	if (!a) {
 		fprintf(stderr, "%s\n", MEMORY_ERROR);
 		return NULL;
 	}
 
 	for (int i = 0; i < lines; ++i) {
 		a[i] = (pixel *)malloc(columns * sizeof(pixel));
-		if (a[i] == NULL) {
-			for (int j = i - 1; j >= 0; --j) {
+		if (!a[i]) {
+			for (int j = i - 1; j >= 0; --j)
 				free(a[j]);
-			}
 			free(a);
 			fprintf(stderr, "%s\n", MEMORY_ERROR);
 			return NULL;
@@ -64,18 +63,22 @@ void swap_integers(int *m, int *n)
 }
 
 //parse the input and extracts a number
-char* get_number(char *instruction, int *number)
+char *get_number(char *instruction, int *number)
 {
 	int i = 0, sign = 1;
-	while (i < (int)strlen(instruction) && !is_digit(instruction[i]) ) {
+	while (i < (int)strlen(instruction) && instruction[i] == ' ')
+		++i;
+
+	if (instruction[i] == '-') {
+		sign = -1;
 		++i;
 	}
 
-	if(i > 0 && instruction[i - 1] == '-')
-		sign = -1;
+	if (!is_digit(instruction[i]))
+		return NULL;
 
 	*number = 0;
-	while(i < (int)strlen(instruction) && is_digit(instruction[i])) {
+	while (i < (int)strlen(instruction) && is_digit(instruction[i])) {
 		*number = *number * 10 + (int)(instruction[i] - '0');
 		++i;
 	}
@@ -86,18 +89,22 @@ char* get_number(char *instruction, int *number)
 }
 
 //parse the input and extracts a name (file_name for example)
-char* get_name(char *instruction, char *name)
+char *get_name(char *instruction, char *name)
 {
 	int i = 0, j = 0;
-	while (i < (int)strlen(instruction) && strchr(SEP, instruction[i]))
+	while (i < (int)strlen(instruction) && instruction[i] == ' ')
 		++i;
-	while (i < (int)strlen(instruction) && !strchr(SEP, instruction[i]))
+	while (i < (int)strlen(instruction) && !strchr("\n ", instruction[i]))
 		name[j++] = instruction[i++];
 	name[j] = 0;
+
+	if (j == 0)
+		return NULL;
+
 	return instruction + i;
 }
 
-//initialise the values of a new image based on the current image 
+//initialise the values of a new image based on the current image
 void init(image *new_image, image *current_image)
 {
 	new_image->type = current_image->type;

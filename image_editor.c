@@ -9,7 +9,7 @@ int main(void)
 {
 	char *instruction;
 	instruction = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
-	if (instruction == NULL) {
+	if (!instruction) {
 		fprintf(stderr, "%s\n", MEMORY_ERROR);
 		return -1;
 	}
@@ -19,28 +19,26 @@ int main(void)
 	current_image.loaded = 0;
 
 	while (!exit_flag) {
-		
 		fgets(instruction, MAXIMUM_LENGTH, stdin);
 
-		if (strstr(instruction, "LOAD"))
+		if (strstr(instruction, "LOAD") == instruction)
 			load_image(instruction, &current_image);
-		else if (strstr(instruction, "SELECT"))
+		else if (strstr(instruction, "SELECT") == instruction)
 			select_area(instruction, &current_image);
-		else if (strstr(instruction, "ROTATE"))
+		else if (strstr(instruction, "ROTATE") == instruction)
 			rotate_image(instruction, &current_image);
-		else if (strstr(instruction, "CROP"))
+		else if (strstr(instruction, "CROP") == instruction)
 			crop_image(&current_image);
-		else if (strstr(instruction, "APPLY"))
+		else if (strstr(instruction, "APPLY") == instruction)
 			apply_filter(instruction, &current_image);
-		else if (strstr(instruction, "SAVE"))
+		else if (strstr(instruction, "SAVE") == instruction)
 			save_image(instruction, &current_image);
-		else if (strstr(instruction, "EXIT"))
+		else if (strstr(instruction, "EXIT") == instruction)
 			exit_flag = exit_program(&current_image);
 		else
 			printf("%s\n", COMMAND_ERROR);
 	}
-
 	free(instruction);
-	
+
 	return 0;
 }

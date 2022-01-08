@@ -12,15 +12,31 @@ void select_area(char *instruction, image *current_image)
 		printf("%s\n", IMAGE_ERROR);
 	} else if (strstr(instruction, "ALL")) {
 		select_all_pixels(current_image);
-		printf("%s\n","Selected ALL");
+		printf("%s\n", "Selected ALL");
 	} else {
 		int x1, y1, x2, y2;
 
-		char *p = instruction;
+		char *p = strstr(instruction, "SELECT") + strlen("SELECT");
 		p = get_number(p, &x1);
+		if (!p) {
+			printf("%s\n", COMMAND_ERROR);
+			return;
+		}
 		p = get_number(p, &y1);
+		if (!p) {
+			printf("%s\n", COMMAND_ERROR);
+			return;
+		}
 		p = get_number(p, &x2);
+		if (!p) {
+			printf("%s\n", COMMAND_ERROR);
+			return;
+		}
 		p = get_number(p, &y2);
+		if (!p) {
+			printf("%s\n", COMMAND_ERROR);
+			return;
+		}
 
 		if (x1 > x2)
 			swap_integers(&x1, &x2);
@@ -46,7 +62,7 @@ void select_area(char *instruction, image *current_image)
 			current_image->coordinates.y2 = y2;
 			printf("%s %d %d %d %d\n", "Selected", x1, y1, x2, y2);
 		} else {
-			printf("%s\n", "Invalid coordinates");
+			printf("%s\n", "Invalid set of coordinates");
 		}
 	}
 }
