@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "image_editor.h"
+#include "utils.h"
 
 //returns 1 if the entire image is selected and 0 otherwise
 int entire_zone(image *current_image)

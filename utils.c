@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "image_editor.h"
+#include "utils.h"
 
 //allocates memory for a matrix of pixels of dimensions lines and columns
 pixel **alloc_matrix(int lines, int columns)

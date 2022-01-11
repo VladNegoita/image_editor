@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "image_editor.h"
+#include "utils.h"
 
 //selects an area of the image
 void select_area(char *instruction, image *current_image)

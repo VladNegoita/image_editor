@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "image_editor.h"
+#include "utils.h"
 
 //returns 0 when the image is not loaded (the program is not ended)
 //returns 1 (the program is ended) and frees the memory otherwise

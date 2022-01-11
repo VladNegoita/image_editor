@@ -45,19 +45,6 @@ typedef struct {
 	area coordinates;
 } image;
 
-pixel **alloc_matrix(int lines, int columns);
-void free_matrix(pixel **a, int lines);
-void select_all_pixels(image *current_image);
-int is_digit(char character);
-void swap_integers(int *m, int *n);
-char *get_number(char *instruction, int *number);
-char *get_name(char *instruction, char *name);
-double clamp(double number);
-pixel clamp_pixel(pixel p);
-pixel multiply(pixel p1, double number);
-pixel add(pixel p1, pixel p2);
-void init(image *new_image, image *current_image);
-
 int exit_program(image *current_image);
 void apply_filter(char *instruction, image *current_image);
 void crop_image(image *current_image);

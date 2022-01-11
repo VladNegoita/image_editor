@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "image_editor.h"
+#include "utils.h"
 
 int max(int x, int y)
 {

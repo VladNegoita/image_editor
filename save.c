@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "image_editor.h"
+#include "utils.h"
 
 //saves the image as file_name
 //when "ascii" follows the file_name, the image is written as text file
@@ -11,7 +12,7 @@
 
 int myround(double x)
 {
-	if ((int)x == (int)(x - 0.000001))
+	if ((int)x == (int)(x - 0.5))
 		return (int)x + 1;
 	return (int)x;
 }
