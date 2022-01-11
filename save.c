@@ -25,11 +25,7 @@ void save_image(char *instruction, image *current_image)
 	}
 	char *p = strstr(instruction, "SAVE") + strlen("SAVE");
 	char *file_name = NULL;
-	file_name = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
-	if (!file_name) {
-		fprintf(stderr, "%s\n", MEMORY_ERROR);
-		return;
-	}
+	file_name = alloc_with_check(MAXIMUM_LENGTH);
 	p = get_name(p, file_name);
 
 	FILE *out;

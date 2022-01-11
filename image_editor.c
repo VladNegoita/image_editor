@@ -9,11 +9,7 @@
 int main(void)
 {
 	char *instruction;
-	instruction = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
-	if (!instruction) {
-		fprintf(stderr, "%s\n", MEMORY_ERROR);
-		return -1;
-	}
+	instruction = alloc_with_check(MAXIMUM_LENGTH);
 
 	int exit_flag = 0;
 	image current_image;

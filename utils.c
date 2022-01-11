@@ -160,3 +160,14 @@ double clamp(double number)
 		return MAX_VALUE;
 	return number;
 }
+
+char *alloc_with_check(int count)
+{
+	char *s;
+	s = (char *)malloc(count * sizeof(char));
+	if (!s) {
+		fprintf(stderr, "%s\n", MEMORY_ERROR);
+		return NULL;
+	}
+	return s;
+}

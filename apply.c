@@ -88,7 +88,7 @@ void apply_filter(char *instruction, image *current_image)
 		return;
 	}
 	int effect = 0;
-	char *p, *filter_name = (char *)malloc(MAXIMUM_LENGTH * sizeof(char));
+	char *p, *filter_name = alloc_with_check(MAXIMUM_LENGTH);
 	p = get_name(strstr(instruction, "APPLY") + strlen("APPLY"), filter_name);
 	if (!p) {
 		printf("%s\n", COMMAND_ERROR);

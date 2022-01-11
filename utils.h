@@ -26,5 +26,6 @@ pixel clamp_pixel(pixel p);
 pixel multiply(pixel p1, double number);
 pixel add(pixel p1, pixel p2);
 void init(image *new_image, image *current_image);
+char *alloc_with_check(int count);
 
 #endif
