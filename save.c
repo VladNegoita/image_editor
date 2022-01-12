@@ -6,10 +6,6 @@
 #include "image_editor.h"
 #include "utils.h"
 
-//saves the image as file_name
-//when "ascii" follows the file_name, the image is written as text file
-//otherwise, it is written as binary file
-
 int myround(double x)
 {
 	if ((int)x == (int)(x - 0.5))
@@ -17,6 +13,9 @@ int myround(double x)
 	return (int)x;
 }
 
+//saves the image as file_name
+//when "ascii" follows the file_name, the image is written as text file
+//otherwise, it is written as binary file
 void save_image(char *instruction, image *current_image)
 {
 	if (!current_image->loaded) {
@@ -48,12 +47,17 @@ void save_image(char *instruction, image *current_image)
 		fprintf(out, "%d\n", max_value);
 		for (int h = 0; h < current_image->mat.height; ++h) {
 			for (int w = 0; w < current_image->mat.width; ++w) {
+				int aux;
 				if (current_image->type == 2 || current_image->type == 5) {
-					fprintf(out, "%d ", myround(current_image->mat.a[h][w].r));
+					aux = (int)myround(current_image->mat.a[h][w].r);
+					fprintf(out, "%d ", aux);
 				} else {
-					fprintf(out, "%d ", myround(current_image->mat.a[h][w].r));
-					fprintf(out, "%d ", myround(current_image->mat.a[h][w].g));
-					fprintf(out, "%d ", myround(current_image->mat.a[h][w].b));
+					aux = (int)myround(current_image->mat.a[h][w].r);
+					fprintf(out, "%d ", aux);
+					aux = (int)myround(current_image->mat.a[h][w].g);
+					fprintf(out, "%d ", aux);
+					aux = (int)myround(current_image->mat.a[h][w].b);
+					fprintf(out, "%d ", aux);
 				}
 			}
 			fprintf(out, "\n");

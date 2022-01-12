@@ -104,7 +104,7 @@ void apply_filter(char *instruction, image *current_image)
 	} else if (strstr(filter_name, "EDGE")) {
 		effect = 1;
 	} else {
-		printf("%s\n", "Invalid filter name");
+		printf("%s\n", "APPLY parameter invalid");
 		free(filter_name);
 		return;
 	}
