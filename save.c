@@ -6,11 +6,13 @@
 #include "image_editor.h"
 #include "utils.h"
 
+//rounds the real number x to the closest integer
 int myround(double x)
 {
-	if ((int)x == (int)(x - 0.5))
-		return (int)x + 1;
-	return (int)x;
+	int x_cast = (int)x;
+	if (x_cast == (int)(x - 0.5))
+		return x_cast + 1;
+	return x_cast;
 }
 
 //saves the image as file_name
