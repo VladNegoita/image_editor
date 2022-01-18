@@ -1,5 +1,4 @@
-#Copyright 2022 311CA Vlad Negoita <vlad1negoita@gmail.com>
-# README - image_editor
+# image_editor
 
 
 Part I: The structure used 
@@ -32,7 +31,7 @@ This app is developed to be used in the terminal. Here is what you can do:
 						-> works with both binary and text files
 
 						-> if another image si already loaded, it frees the
-						   corresponding memory and load the new one
+						   corresponding memory and loads the new one
 
 						-> works with both plain and binary format of the
 						   images. The format specifier is essential: after
@@ -122,3 +121,5 @@ This app is developed to be used in the terminal. Here is what you can do:
 	8. EXIT -> ends the program
 
 ###### Note: The parameters are the ones between angular parantheses
+
+###### Copyright 2022 311CA Vlad Negoita <vlad1negoita@gmail.com>
