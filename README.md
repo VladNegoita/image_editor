@@ -1,6 +1,6 @@
 # image_editor
 
-Part I: The structure used 
+## Part I: The structure used 
 
 Image contains the following members:
 
@@ -17,7 +17,7 @@ Image contains the following members:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Part II: The operations permitted
+## Part II: The operations permitted
 
 This app is developed to be used in the terminal. Here is what you can do:
 
