@@ -15,8 +15,6 @@ Image contains the following members:
 	-coordinates -> identifies a selected rectangle area on which 
 					the transformations will take place
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ## Part II: The operations permitted
 
 This app is developed to be used in the terminal. Here is what you can do:
